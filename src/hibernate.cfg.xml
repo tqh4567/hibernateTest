@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://47.100.17.213:3306/hibernate?useUnicode=true&amp;characterEncoding=UTF8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">123456</property>
+		<!-- 将hibernate生成的sql语句打印到控制台 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 将hibernate生成的sql语句格式化(语法缩进) -->
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<mapping resource="com/hibernate/domain/Customer.hbm.xml" />
+		<mapping resource="com/hibernate/domain/LinkMan.hbm.xml" />
+		<mapping resource="com/hibernate/domain/User.hbm.xml" />
+		<mapping resource="com/hibernate/domain/Role.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

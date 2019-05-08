@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 首先制定domain的包 -->    
+<hibernate-mapping  package="com.hibernate.domain">
+	<class name="Role" table="sys_role">
+		<id name="role_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="role_name" column="role_name"></property>
+		<property name="role_memo" column="role_memo"></property>	
+		<set name="users" table="sys_user_role" inverse="true" cascade="delete"><!-- inverse="true"为必须要加的，因为如果不加当进行相关插入时会产生重复的sql语句就会包错 
+		org.hibernate.exception.ConstraintViolationException: could not execute statement
+		Duplicate entry '25-23' for key 'PRIMARY'就是将外键25的与23的关联起来，这样就会报外键关联错误
+		-->
+			<key column="role_id"></key>
+			<many-to-many class="com.hibernate.domain.User" column="user_id" ></many-to-many><!--  column="user_id" -->
+		</set>	
+	</class>
+</hibernate-mapping>

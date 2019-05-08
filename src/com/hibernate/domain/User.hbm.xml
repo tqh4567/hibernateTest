@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 首先制定domain的包 -->    
+<hibernate-mapping  package="com.hibernate.domain">
+	<class name="User" table="sys_user">
+		<id name="user_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="user_code" column="user_code"></property>
+		<property name="user_name" column="user_name"></property>
+		<property name="user_password" column="user_password"></property>
+		<property name="user_state" column="user_state"></property>	
+		
+		<!-- 必须让一方放弃级联的主导权，否则会执行会报错 -->	
+		<set name="roles" table="sys_user_role" cascade="save-update"><!-- cascade="save-update" -->
+			<key column="user_id"></key>
+			<many-to-many class="com.hibernate.domain.Role" column="role_id"></many-to-many><!-- column="role_id" -->
+		</set>
+	</class>
+	
+
+</hibernate-mapping>
